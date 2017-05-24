@@ -16,7 +16,7 @@ class Prob6: public AbstractProb {
 public:
     int work() override;
 private:
-    void fitting(int level);
+    void fitting(int level, double *dataX, double *dataY, bool lnFitting);
 
     double *dataX, *dataY;
     int n;

@@ -28,7 +28,7 @@ int Prob1::work() {
 
     int n = i;
     printf("When using single float, the sum doesn't change when n = %d\n", n);
-    printf("Calculated by \"double result - single result\", Error = %lf\n", a2 - a1);
+    printf("Calculated by \"single result - double result\", Error = %lf, Error rate = %lf\n", a1 - a2, (a1 - a2) / a2);
 
     /* -------------- */
     clock_t start, end;

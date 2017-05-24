@@ -26,7 +26,7 @@ double Prob2::newtonSolve(double (*f)(double), double (*df)(double), double x0, 
             lambda /= 2.0;
         }
         preX = x, x = nexX;
-        printf("lambda = %.8lf, x = %.8lf, f(x) = %.8lf\n", lambda, x, f(x));
+        printf("lambda = %.8lf, x = %.8lf, x - pre_x = %.8lf, f(x) = %.8lf\n", lambda, x, x - preX, f(x));
     }
     return x;
 }

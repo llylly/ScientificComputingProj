@@ -22,12 +22,16 @@ int Prob6::work() {
              238.65, 252.2, 267.55,
              280.50, 296.65, 301.65,
              310.40, 318.15, 325.15};
-    fitting(1);
-    fitting(2);
+    double *lny = new double[15];
+    for (int i=0; i<n; ++i)
+        lny[i] = log(dataY[i]) / log(exp(1.0));
+    fitting(1, dataX, lny, true);
+    fitting(2, dataX, dataY, false);
+    delete[] lny;
     return 0;
 }
 
-void Prob6::fitting(int level) {
+void Prob6::fitting(int level, double *dataX, double *dataY, bool lnFitting) {
     double **samples = new double*[level + 1];
     for (int i=0; i<=level; ++i) {
         samples[i] = getSample(i, dataX, n);
@@ -63,8 +67,12 @@ void Prob6::fitting(int level) {
             est += x[j] * tmp;
             tmp *= dataX[i];
         }
-        printf("   X: %lf, est: %lf, real: %lf\n", dataX[i], est, dataY[i]);
-        sd += (est - dataY[i]) * (est - dataY[i]);
+        if (lnFitting)
+            printf("   X: %lf, est: %lf, real: %lf\n", dataX[i], exp(est), exp(dataY[i])),
+                    sd += (exp(est) - exp(dataY[i])) * (exp(est) - exp(dataY[i]));
+        else
+            printf("   X: %lf, est: %lf, real: %lf\n", dataX[i], est, dataY[i]),
+                    sd += (est - dataY[i]) * (est - dataY[i]);
     }
     sd = sqrt(sd / (double)n);
     printf("  RMSE = %lf\n", sd);

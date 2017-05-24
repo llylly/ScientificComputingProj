@@ -77,9 +77,15 @@ void Prob5::findMaxEigen(double **mat, int n, double *v0, double eps) {
         u = v;
         for (int i=0; i<n; ++i)
             u[i] /= nAns;
-        printf("  i = %d, lamba = %lf\n", i, ans);
+        printf("  i = %d, max(v_k) = %lf, lambda = %lf\n", i, nAns, ans);
+        printf("    u = [");
+        for (int i=0; i<n; ++i) {
+            printf(" %lf", u[i]);
+            if (i < n-1) printf(","); else printf(" ]^T\n");
+        }
     } while (ABS(delta) >= eps);
     printf("Max Eigenvector = %lf\n", ans);
+    delete[] u;
 }
 
 double *Prob5::mul(double **A, double *b, int n) {

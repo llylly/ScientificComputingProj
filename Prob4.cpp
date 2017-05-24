@@ -39,7 +39,7 @@ int Prob4::work() {
 
     SORTest(mat, b, 10, 1e-4, pX2, 1.25, true);
 
-    for (double oTest = 1e-3; oTest <= 100.0; oTest *= 2.0) {
+    for (double oTest = 1e-3; oTest <= 10000000.0; oTest *= 2.0) {
         SORTest(mat, b, 10, 1e-4, pX2, oTest, false);
     }
     for (double oTest = 0.5; oTest <= 1.5; oTest += 0.01) {
@@ -132,9 +132,8 @@ int Prob4::SOR(double **mat, double *b, int n, double epsilon, double **pX, doub
             for (int j=i+1; j<n; ++j)
                 newX[i] -= mat[i][j] * X[j];
             newX[i] /= mat[i][i];
-        }
-        for (int i=0; i<n; ++i)
             newX[i] = (1.0 - omega) * X[i] + omega * newX[i];
+        }
         for (int i=0; i<n; ++i)
             if (ABS(newX[i] - X[i]) > nowEps)
                 nowEps = ABS(newX[i] - X[i]);
