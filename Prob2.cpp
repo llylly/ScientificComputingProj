@@ -17,10 +17,11 @@ int Prob2::work() {
 
 double Prob2::newtonSolve(double (*f)(double), double (*df)(double), double x0, double lambda0, double epsilon) {
     double x = x0, preX = x0, nexX = x0;
-    double lambda = lambda0;
+    double lambda;
     while ((ABS(f(x)) > epsilon) || (ABS(x - preX) > epsilon)) {
         double s = f(x) / df(x);
         nexX = x - s;
+        lambda = lambda0;
         while (ABS(f(nexX)) >= ABS(f(x))) {
             nexX = x - lambda * s;
             lambda /= 2.0;

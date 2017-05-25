@@ -49,7 +49,7 @@ void Prob3::test(int n) {
     for (int i=0; i<n; ++i)
         if (ABS(X[i] - 1.0) > deltaxMax) deltaxMax = ABS(X[i] - 1.0);
     printf("n = %d\n", n);
-    printf("  ||r||_inf = %.8lf\n", rMax);
+    printf("  ||r||_inf = %.8e\n", rMax);
     printf("  ||\\delta X||_inf = %.8lf\n", deltaxMax);
 
     double *bNew = new double[n];
@@ -74,7 +74,7 @@ void Prob3::test(int n) {
     for (int i=0; i<n; ++i)
         if (ABS(Xnew[i] - 1.0) > deltaxMaxNew) deltaxMaxNew = ABS(Xnew[i] - 1.0);
     printf(" For 1e-7 turbulence,\n");
-    printf("  ||r||_inf = %.8lf\n", rMaxNew);
+    printf("  ||r||_inf = %.8e\n", rMaxNew);
     printf("  ||\\delta X||_inf = %.8lf\n", deltaxMaxNew);
 
     delete[] X;
