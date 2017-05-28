@@ -65,7 +65,7 @@ void Prob3::test(int n) {
         rNew[i] = 0.0;
         for (int j=0; j<n; ++j)
             rNew[i] += mat[i][j] * Xnew[j];
-        rNew[i] = b[i] - rNew[i];
+        rNew[i] = bNew[i] - rNew[i];
     }
 
     double rMaxNew = 0.0f, deltaxMaxNew = 0.0f;
